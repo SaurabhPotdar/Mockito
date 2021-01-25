@@ -28,7 +28,7 @@ class MockitoDemoApplicationTests {
 
 	
 	@InjectMocks  //Injects dependencies autowired by service
-	@Spy  //Used to mock internal methods
+	@Spy  //Used to mock(avoid) internal method calls
 	EmployeeService employeeService;
 	
 	@Mock
