@@ -27,5 +27,11 @@ public class EmployeeService {
 		//Will throw null pointer if name is null
 		System.out.println(employee.getName().equals("ABC"));
 	}
+	
+	@SuppressWarnings("unused")
+	private void privateMethod(int x, Employee employee) {
+		employee.setId(x);
+		System.out.println(employee);
+	}
 
 }

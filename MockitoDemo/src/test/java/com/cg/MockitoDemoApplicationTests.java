@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import com.cg.dto.Employee;
 import com.cg.repository.EmployeeRepository;
@@ -61,6 +62,14 @@ class MockitoDemoApplicationTests {
 		doNothing().when(employeeService).bar(any());
 		employeeService.foo();
 		verify(employeeService, times(1)).bar(any());
+	}
+	
+	@Test
+	public void testPrivateMethod() {
+		// Invoking private method for coverage
+		String methodName = "privateMethod";
+		Employee employee = new Employee();
+		ReflectionTestUtils.invokeMethod(employeeService,methodName,10,employee);
 	}
 
 }
