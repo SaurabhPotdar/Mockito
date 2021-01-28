@@ -42,7 +42,7 @@ class MockitoDemoApplicationTests {
 		Employee employee = new Employee(id,"Saurabh");
 		doReturn(Optional.of(employee)).when(employeeRepository).findById(id);
 		assertEquals(employee, employeeService.findById(id));
-		verify(employeeRepository, times(id)).findById(id);
+		verify(employeeRepository, times(1)).findById(id);
 	}
 	
 	@Test
