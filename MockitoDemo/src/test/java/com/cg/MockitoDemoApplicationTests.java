@@ -32,7 +32,7 @@ class MockitoDemoApplicationTests {
 	@Spy  //Used to mock(avoid) internal method calls
 	EmployeeService employeeService;
 	
-	@Mock
+	@Mock  //Will be injected into @InjectMocks employeeService
 	private EmployeeRepository employeeRepository;
 	
 	@Test
