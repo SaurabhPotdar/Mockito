@@ -28,10 +28,17 @@ public class EmployeeService {
 		System.out.println(employee.getName().equals("ABC"));
 	}
 	
-	@SuppressWarnings("unused")
-	private void privateMethod(int x, Employee employee) {
+	private void privateMethod() {
+		Employee employee = new Employee();
+		int x=1;
 		employee.setId(x);
 		System.out.println(employee);
 	}
+	
+	public void setId(int x, Employee employee) {
+		privateMethod();
+	}
+	
+	
 
 }

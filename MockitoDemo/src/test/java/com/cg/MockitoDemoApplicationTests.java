@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
+import org.powermock.api.mockito.PowerMockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -70,6 +71,16 @@ class MockitoDemoApplicationTests {
 		String methodName = "privateMethod";
 		Employee employee = new Employee();
 		ReflectionTestUtils.invokeMethod(employeeService,methodName,10,employee);
+	}
+	
+	@Test
+	public void testSetId() throws Exception {
+		// setId() internally calls private method
+		// We want to mock/avoid this method
+		Employee employee = new Employee();
+		EmployeeService mock = PowerMockito.spy(employeeService);
+		PowerMockito.doNothing().when(mock,"privateMethod");
+		mock.setId(10, employee);
 	}
 
 }
