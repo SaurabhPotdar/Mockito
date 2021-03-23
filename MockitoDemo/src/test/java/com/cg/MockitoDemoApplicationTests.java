@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -37,12 +38,24 @@ class MockitoDemoApplicationTests {
 	private EmployeeRepository employeeRepository;
 	
 	@Test
+	public void testHelloWorld() {
+		assertEquals("Hello", employeeService.helloWorld(1));
+		assertEquals("World", employeeService.helloWorld(2));
+		assertEquals("HelloWorld", employeeService.helloWorld(3));
+	}
+	
+	@Test
+	public void testBranchCoverage() {
+		employeeService.branchCoverage(false, false, false);
+	}
+	
+	@Test
 	@DisplayName("FindById")
-	public void testFindById() {
+	public void testFindByIdAndIncrement() {
 		int id = 1;
 		Employee employee = new Employee(id,"Saurabh");
 		doReturn(Optional.of(employee)).when(employeeRepository).findById(id);
-		assertEquals(employee, employeeService.findById(id));
+		assertEquals(2, employeeService.findByIdAndIncrement(id).getId());
 		verify(employeeRepository, times(1)).findById(id);
 	}
 	
@@ -74,6 +87,7 @@ class MockitoDemoApplicationTests {
 	}
 	
 	@Test
+	@Disabled
 	public void testSetId() throws Exception {
 		// setId() internally calls private method
 		// We want to mock/avoid this method
