@@ -18,9 +18,11 @@ public class EmployeeService {
 		else
 			return "HelloWorld";
 	}
-	
+
 	public boolean branchCoverage(boolean a, boolean b, boolean c) {
-		return a && b && c;
+		return a 
+			&& b 
+			&& c;
 	}
 
 	public void add(Employee employee) {
@@ -28,8 +30,8 @@ public class EmployeeService {
 	}
 
 	public Employee findByIdAndIncrement(int id) {
-		Employee employee =  employeeRepository.findById(id).orElse(null);
-		employee.setId(employee.getId()+1);
+		Employee employee = employeeRepository.findById(id).orElse(null);
+		employee.setId(employee.getId() + 1);
 		return employee;
 	}
 

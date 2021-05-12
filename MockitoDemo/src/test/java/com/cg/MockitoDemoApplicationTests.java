@@ -2,6 +2,8 @@ package com.cg;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
@@ -38,6 +40,7 @@ class MockitoDemoApplicationTests {
 	private EmployeeRepository employeeRepository;
 	
 	@Test
+	@DisplayName("Basic Testing")
 	public void testHelloWorld() {
 		assertEquals("Hello", employeeService.helloWorld(1));
 		assertEquals("World", employeeService.helloWorld(2));
@@ -45,6 +48,7 @@ class MockitoDemoApplicationTests {
 	}
 	
 	@Test
+	@DisplayName("Branch Coverage")
 	public void testBranchCoverage() {
 		employeeService.branchCoverage(false, false, false);
 	}
@@ -64,6 +68,7 @@ class MockitoDemoApplicationTests {
 	public void testAdd() {
 		Employee employee = new Employee();
 		doReturn(employee).when(employeeRepository).save(employee);
+		//Now this will be injected(autowired) into employeeService
 		employeeService.add(employee);
 		verify(employeeRepository, times(1)).save(employee);
 	}
@@ -89,12 +94,13 @@ class MockitoDemoApplicationTests {
 	@Test
 	@Disabled
 	public void testSetId() throws Exception {
-		// setId() internally calls private method
-		// We want to mock/avoid this method
-		Employee employee = new Employee();
-		EmployeeService mock = PowerMockito.spy(employeeService);
-		PowerMockito.doNothing().when(mock,"privateMethod");
-		mock.setId(10, employee);
+		// https://stackoverflow.com/questions/28121177/mock-private-method-using-powermockito/28211434
+		// https://stackoverflow.com/questions/7803944/how-to-mock-private-method-for-testing-using-powermock
+		// Return from private method.
+		// We want to avoid private methods
+		EmployeeService classUnderTest = PowerMockito.spy(new EmployeeService());
+        PowerMockito.when(classUnderTest, "privateApi", anyString(), anyInt()).thenReturn(20);
+        //classUnderTest.publicApi();
 	}
 
 }
