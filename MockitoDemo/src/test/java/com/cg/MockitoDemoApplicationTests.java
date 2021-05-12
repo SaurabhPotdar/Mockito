@@ -2,8 +2,6 @@ package com.cg;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
@@ -17,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
-import org.powermock.api.mockito.PowerMockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -98,9 +95,9 @@ class MockitoDemoApplicationTests {
 		// https://stackoverflow.com/questions/7803944/how-to-mock-private-method-for-testing-using-powermock
 		// Return from private method.
 		// We want to avoid private methods
-		EmployeeService classUnderTest = PowerMockito.spy(new EmployeeService());
-        PowerMockito.when(classUnderTest, "privateApi", anyString(), anyInt()).thenReturn(20);
-        //classUnderTest.publicApi();
+//		EmployeeService classUnderTest = PowerMockito.spy(new EmployeeService());
+//        PowerMockito.when(classUnderTest, "a").thenReturn(20);
+//        classUnderTest.b();
 	}
 
 }
