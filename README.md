@@ -7,6 +7,37 @@ https://mkyong.com/maven/maven-jacoco-code-coverage-example/
 
 https://lkrnac.net/blog/2014/01/mock-private-method/#mock-private-method
 
+## Mock vs Spy
+With mock we are just creating a fake object, so calling methods on the mock will do nothing or return default values. eg. size() returns 0. We can mock methods to change this behaviour.</br>
+```
+@Test
+public void testMockList() {
+  List<String> mockList = mock(ArrayList.class);
+  //by default, calling the methods of mock object will do nothing
+  mockList.add("test");  //does nothing
+  assertEquals(0, mockList.size());  //returns default values
+  assertNull(mockList.get(0));
+  
+  //Mocking methods of mock
+  when(mockList.get(100)).thenReturn(expected);
+  assertEquals(expected, mockList.get(100));
+}
+```
+With spy we get a real object and it will call the real method is it is not stubbed.
+```
+@Test
+public void testSpyList() {
+  //spy object will call the real method when not stubbed
+  spyList.add("test");
+  assertEquals(1, spyList.size());
+  assertEquals("test", spyList.get(0));
+  
+  //Mocking methods of spy
+  when(mockList.get(100)).thenReturn(expected);
+  assertEquals(expected, mockList.get(100));
+}
+```
+
 ## Testing Controller
 ### Path variables
 We can test as normal method by passing path variables as function arguements. If it does not work then we can use [mockMvc](https://gist.github.com/keesun/2373081).
