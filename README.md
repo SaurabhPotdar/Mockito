@@ -23,7 +23,7 @@ public void testMockList() {
   assertEquals(expected, mockList.get(100));
 }
 ```
-With spy we get a real object and it will call the real method is it is not stubbed.
+With spy we get a real object and it will call the real method if it is not stubbed.
 ```
 @Test
 public void testSpyList() {
