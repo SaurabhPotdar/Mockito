@@ -23,7 +23,7 @@ public void testMockList() {
   assertEquals(expected, mockList.get(100));
 }
 ```
-With spy we get a real object and it will call the real method is it is not stubbed.
+With spy we get a real object and it will call the real method if it is not stubbed.
 ```
 @Test
 public void testSpyList() {
@@ -51,11 +51,12 @@ To call the test method we need @Spy @InjectMocks or create a new() service obje
 @Spy will be used to stub internal methods.
 
 ## Testing Controller
+@WebMvcTest
 ### Path variables
 We can test as normal method by passing path variables as function arguements. If it does not work then we can use [mockMvc](https://gist.github.com/keesun/2373081).
 
 ## [Testing Repository](https://github.com/SaurabhPotdar/jpa-demo/tree/main/jpa-demo/src/test)
-```@DataJpaTest``` automatically creates an in memory H2 Database for testting.</br>
+```@DataJpaTest``` automatically creates an in memory H2 Database for testing.</br>
 We can configure our own DB for testing by creating an application.properties file in src/test/resources.[Ref](https://stackoverflow.com/questions/36649179/java-h2-in-memory-database-error-table-not-found)</br>
 We can also use [annotations](https://stackoverflow.com/questions/61671173/problem-running-unit-test-under-datajpatest).
 
