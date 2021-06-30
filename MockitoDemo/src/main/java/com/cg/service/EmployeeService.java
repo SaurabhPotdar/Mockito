@@ -54,4 +54,9 @@ public class EmployeeService {
 		privateMethod(x, employee);
 	}
 	
+	public int fizz() {
+		foo();
+		bar(null);
+		return 1;
+	}
 }

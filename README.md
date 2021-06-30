@@ -38,6 +38,18 @@ public void testSpyList() {
 }
 ```
 
+## @InjectMocks and @Mock
+We cannot @InjectMocks and @Mock together as it throws exception, so we need to use @InjectMocks and @Spy together. So how to simulate @InjectMocks and @Mock??</br>
+
+Mock on service will not work as it does nothing.
+```
+@Mock
+private EmployeeService mock;
+mock.foo();  //Will not do anything and will just return default value.
+```
+To call the test method we need @Spy @InjectMocks or create a new() service object and inject mocks into it using constructor injection.
+@Spy will be used to stub internal methods.
+
 ## Testing Controller
 ### Path variables
 We can test as normal method by passing path variables as function arguements. If it does not work then we can use [mockMvc](https://gist.github.com/keesun/2373081).
