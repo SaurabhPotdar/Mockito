@@ -52,9 +52,8 @@ To call the test method we need @Spy @InjectMocks or create a new() service obje
 
 ## Testing Controller
 [@WebMvcTest](https://reflectoring.io/spring-boot-web-controller-test/)
-[mockMvc](https://gist.github.com/keesun/2373081)
 
-We can test as normal method by passing path variables as function arguements. If it does not work then we can use.
+We can test as normal method by passing path variables as function arguements. We can also use [mockMvc](https://gist.github.com/keesun/2373081).
 
 ## [Testing Repository](https://github.com/SaurabhPotdar/jpa-demo/tree/main/jpa-demo/src/test)
 ```@DataJpaTest``` automatically creates an in memory H2 Database for testing.</br>
